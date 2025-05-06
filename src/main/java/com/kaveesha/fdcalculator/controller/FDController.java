@@ -22,11 +22,12 @@ public class FDController {
 
     @PostMapping("/calculate")
     public String calculate(@ModelAttribute FDForm fdForm, Model model) {
-        BigDecimal result  = fdService.calculateMaturityAmount(
-                fdForm.getAmount(),
-                fdForm.getInterestRate(),
-                fdForm.getDurationMonths(),
-                fdForm.isRenewable()
+        BigDecimal result  = fdService.calculateFDGrowthOverTime(
+            fdForm.getAmount(),
+            fdForm.getInterestRate(),
+            fdForm.getFdDurationMonths(),
+            fdForm.getTargetMonths(),
+            fdForm.isReinvestWithInterest()
         );
         model.addAttribute("result", result );
         model.addAttribute("fdForm", fdForm);

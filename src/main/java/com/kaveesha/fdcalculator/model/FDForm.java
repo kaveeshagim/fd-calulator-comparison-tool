@@ -5,8 +5,9 @@ import java.math.BigDecimal;
 public class FDForm {
     private BigDecimal amount;
     private double interestRate;
-    private int durationMonths;
-    private boolean renewable;
+    private int fdDurationMonths;
+    private int targetMonths;
+    private boolean reinvestWithInterest;
 
     //Getters and Setters
     public BigDecimal getAmount() {
@@ -24,19 +25,27 @@ public class FDForm {
         this.interestRate = interestRate;
     }
 
-    public int getDurationMonths() {
-        return durationMonths;
+    public int getFdDurationMonths() {
+        return fdDurationMonths;
     }
 
-    public void setDurationMonths(int durationMonths) {
-        this.durationMonths = durationMonths;
+    public void setFdDurationMonths(int fdDurationMonths) {
+        this.fdDurationMonths = fdDurationMonths;
     }
 
-    public boolean isRenewable() {
-        return renewable;
+    public int getTargetMonths() {
+        return targetMonths;
     }
 
-    public void setRenewable(boolean renewable) {
-        this.renewable = renewable;
+    public void setTargetMonths(int targetMonths) {
+        this.targetMonths = targetMonths;
+    }
+
+    public boolean isReinvestWithInterest() {
+        return reinvestWithInterest;
+    }
+
+    public void setReinvestWithInterest(boolean reinvestWithInterest) {
+        this.reinvestWithInterest = reinvestWithInterest;
     }
 }
