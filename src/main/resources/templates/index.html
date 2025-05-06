@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>FD Calculator</title>
+  </head>
+  <body>
+    <h1>Fixed Deposit Calculator</h1>
+    <form th:action="@{/calculate}" th:object="${fdForm}" method="post">
+      <label>Amount:</label>
+      <input type="number" th:field="*{amount}" required /><br /><br />
+
+      <label>Interest Rate (%):</label>
+      <input
+        type="number"
+        step="0.01"
+        th:field="*{interestRate}"
+        required
+      /><br /><br />
+
+      <label>Duration (months):</label>
+      <input type="number" th:field="*{durationMonths}" required /><br /><br />
+
+      <label>Renewable:</label>
+      <input type="checkbox" th:field="*{renewable}" /><br /><br />
+
+      <button type="submit">Calculate</button>
+    </form>
+
+    <div th:if="${result != null}">
+      <h2>Result:</h2>
+      <p>Total Maturity Amount: <strong th:text="${result}"></strong></p>
+    </div>
+  </body>
+</html>
