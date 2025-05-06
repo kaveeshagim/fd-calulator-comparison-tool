@@ -2,8 +2,6 @@
 
 A simple and interactive web app built with **Java**, **Spring Boot**, **Thymeleaf**, and **H2 (in-memory DB)**. It allows users to calculate Fixed Deposit (FD) maturity values and compare multiple FD options over a target period.
 
----
-
 ## ✨ Features
 
 - 📈 **FD Calculator**  
@@ -33,7 +31,7 @@ A simple and interactive web app built with **Java**, **Spring Boot**, **Thymele
 
 | Layer      | Tech                    |
 | ---------- | ----------------------- |
-| Backend    | Java 22, Spring Boot 3+ |
+| Backend    | Java 24, Spring Boot 3+ |
 | Frontend   | Thymeleaf (HTML + JS)   |
 | Database   | H2 (In-Memory)          |
 | Build Tool | Maven                   |
