@@ -203,33 +203,35 @@
 
     <div id="comparisonSection" style="display: none">
       <div class="container">
-        <form th:action="@{/compare}" method="post">
-          <input type="hidden" name="activeTab" value="comparison" />
+        <div id="comparisonWrapper">
+          <form th:action="@{/compare}" method="post">
+            <input type="hidden" name="activeTab" value="comparison" />
 
-          <label>🎯 Target Period (in months)</label>
-          <input type="number" name="targetMonths" required />
+            <label>🎯 Target Period (in months)</label>
+            <input type="number" name="targetMonths" required />
 
-          <div id="comparisonInputs">
-            <div class="compare-row">
-              <label>💰 Principal Amount (LKR)</label>
-              <input type="number" name="principals" required />
+            <div id="comparisonInputs">
+              <div class="compare-row">
+                <label>💰 Principal Amount (LKR)</label>
+                <input type="number" name="principals" required />
 
-              <label>📅 FD Duration (in months)</label>
-              <input type="number" name="durations" required />
+                <label>📅 FD Duration (in months)</label>
+                <input type="number" name="durations" required />
 
-              <label>📈 Interest Rate (%)</label>
-              <input type="number" step="0.01" name="rates" required />
+                <label>📈 Interest Rate (%)</label>
+                <input type="number" step="0.01" name="rates" required />
+              </div>
             </div>
-          </div>
 
-          <button type="button" onclick="addFDRow()">
-            ➕ Add Another Option
-          </button>
-          <br /><br />
-          <button type="submit">📊 Compare</button>
-        </form>
+            <button type="button" onclick="addFDRow()">
+              ➕ Add Another Option
+            </button>
+            <br /><br />
+            <button type="submit">📊 Compare</button>
+          </form>
+        </div>
 
-        <div th:if="${comparisonResults != null}">
+        <div id="comparisonResultsSection" th:if="${comparisonResults != null}">
           <h2>📈 Comparison Table</h2>
           <table border="1" cellpadding="8" cellspacing="0" style="width: 100%">
             <thead>
@@ -254,6 +256,14 @@
               </tr>
             </tbody>
           </table>
+          <div
+            th:if="${comparisonResults != null}"
+            style="text-align: center; margin-top: 20px"
+          >
+            <button type="button" onclick="clearComparison()">
+              🔄 Clear Comparison
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -304,6 +314,27 @@
     `;
 
         container.appendChild(row);
+      }
+
+      function clearComparison() {
+        // Reset the form
+        const form = document.querySelector("#comparisonWrapper form");
+        form.reset();
+
+        // Remove extra FD rows (leave only the first one)
+        const container = document.getElementById("comparisonInputs");
+        const rows = container.querySelectorAll(".compare-row");
+        rows.forEach((row, index) => {
+          if (index > 0) row.remove();
+        });
+
+        // Fully remove the comparison results section
+        const resultsSection = document.getElementById(
+          "comparisonResultsSection"
+        );
+        if (resultsSection) {
+          resultsSection.remove(); // removes the table and clear button entirely
+        }
       }
     </script>
   </body>
